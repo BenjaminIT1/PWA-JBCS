@@ -1,42 +1,114 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+/*
+  App.css - Rediseño elegante y responsivo para AutomatizaPro (n8n)
+  Contiene variables, layout, hero, servicios, casos, contacto, splash screen y animaciones.
+*/
+
+:root{
+  --bg-1: #0b1220;
+  --accent-1: #7c3aed;
+  --accent-2: #06b6d4;
+  --muted: rgba(255,255,255,0.72);
+  --glass: rgba(255,255,255,0.04);
+  --header-h: 72px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* --- Splash Screen --- */
+.splash-bg{
+  position:fixed; inset:0; z-index:1200; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(800px 300px at 10% 20%, rgba(124,58,237,0.16), transparent),
+              linear-gradient(135deg,var(--accent-1),#4338ca 45%, var(--accent-2));
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.splash-content{ display:flex; flex-direction:column; align-items:center; gap:1rem; padding:1.2rem }
+.splash-logo{ width:84px; height:84px; border-radius:16px; background:#fff; box-shadow:0 16px 40px rgba(2,6,23,0.45); }
+.splash-title{ color:#fff; font-weight:800; letter-spacing:0.6px; font-size:1.25rem; text-align:center }
+.splash-sub{ color:rgba(255,255,255,0.85); font-size:0.92rem }
+.splash-bar{ width:240px; height:8px; background:rgba(255,255,255,0.12); border-radius:999px; overflow:hidden }
+.splash-bar-inner{ height:100%; background:linear-gradient(90deg,var(--accent-2),#f59e0b); border-radius:999px; transition:width 140ms linear }
+
+@keyframes logo-bounce{ 0%{transform:scale(.8); opacity:0} 60%{transform:scale(1.05); opacity:1} 100%{transform:none} }
+
+/* --- App background and helpers --- */
+.app-bg{ min-height:100vh; min-width:100vw; display:flex; flex-direction:column; background:linear-gradient(180deg, rgba(6,6,23,0.15), transparent); font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto }
+.blurred{ filter: blur(6px) saturate(.9); pointer-events:none }
+
+/* Animations */
+.animate-fadein{ animation:fadein .9s ease both }
+.animate-slideup{ animation:slideup .9s cubic-bezier(.2,.9,.2,1) both }
+.animate-fadein-delay{ animation:fadein .9s .25s both }
+.animate-fadein-delay2{ animation:fadein .9s .45s both }
+.animate-fadein-delay3{ animation:fadein .9s .65s both }
+
+@keyframes fadein{ from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none} }
+@keyframes slideup{ from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:none} }
+
+/* --- Header --- */
+.header{ width:100%; position:sticky; top:0; z-index:120; backdrop-filter: blur(6px) saturate(1.1); border-bottom:1px solid rgba(255,255,255,0.03); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); min-height:var(--header-h); display:flex; align-items:center }
+.header-content{ max-width:1600px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 3rem }
+.brand{ display:flex; gap:0.9rem; align-items:center; min-width:240px }
+.logo-main{ width:96px; height:96px; border-radius:14px; background:linear-gradient(180deg,#fff,#f3f4f6); box-shadow:0 14px 40px rgba(2,6,23,0.45) }
+.brand-title{ font-size:1.02rem; font-weight:800; color:#fff }
+.brand-sub{ font-size:.78rem; color:var(--muted) }
+.nav{ display:flex; gap:0.85rem; align-items:center; white-space:nowrap }
+.nav-link{ background:transparent; color:var(--muted); border:none; padding:0.42rem 0.7rem; border-radius:8px; font-weight:700; cursor:pointer; display:inline-block }
+.nav-link:hover{ color:#fff; background:rgba(255,255,255,0.03) }
+.nav-link.active{ color:#fff; background:transparent; box-shadow:none; border-bottom:3px solid var(--accent-2); padding-bottom:0.28rem }
+.nav-cta{ background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:#fff; border:none; padding:0.65rem 1.1rem; border-radius:12px; font-weight:800; cursor:pointer; box-shadow: 0 10px 30px rgba(124,58,237,0.12) }
+
+/* --- Main & layout --- */
+.main{ display:flex; flex-direction:column; gap:2.6rem; padding:calc(var(--header-h) + 28px) 2rem 3rem; max-width:1400px; margin:0 auto }
+.hero{ display:grid; grid-template-columns: 1fr minmax(320px,520px); gap:2.2rem; align-items:start; width:100%; box-sizing:border-box }
+.hero-inner{ padding:0; min-width:0; max-width:900px }
+.hero-title{ font-size:clamp(1.6rem, 2.2vw, 3.2rem); color:#fff; line-height:1.02; margin:0 0 .6rem; font-weight:800; max-width:880px }
+.hero-sub{ color:rgba(255,255,255,0.92); margin:0 0 1rem; font-size:clamp(.95rem, 1vw, 1.03rem) }
+.hero-cta{ display:flex; gap:0.8rem; flex-wrap:wrap }
+.btn-primary{ background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:#fff; border:none; padding:0.8rem 1.2rem; border-radius:12px; font-weight:800; cursor:pointer }
+.btn-ghost{ background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.06); padding:0.7rem 1rem; border-radius:10px; font-weight:700 }
+.hero-visual{ display:flex; align-items:center; justify-content:center; min-width:0 }
+.visual-shape{ width:100%; height:auto; max-width:520px; border-radius:18px; filter: drop-shadow(0 24px 60px rgba(2,6,23,0.5)); display:block }
+
+/* --- Sections: services, cases, contact --- */
+.section{ padding:1rem 0 }
+.section-title{ font-size:1.4rem; color:#fff; margin:0 0 1rem; font-weight:800 }
+.services-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.2rem }
+.service-card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:1.1rem; min-height:140px; display:flex; flex-direction:column; gap:0.6rem; box-sizing:border-box }
+.svc-icon{ font-size:1.6rem }
+.cases-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.2rem }
+.case-card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:1rem; border-radius:12px }
+.contact-card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:1.2rem; border-radius:12px; display:flex; flex-direction:column; gap:1rem }
+.contact-actions{ display:flex; gap:0.6rem }
+
+/* small interactive touches */
+.service-card:hover, .case-card:hover{ transform:translateY(-6px); box-shadow:0 18px 50px rgba(2,6,23,0.35); transition:all .28s cubic-bezier(.2,.9,.2,1) }
+
+/* footer */
+.footer{ width:100%; padding:1.1rem 0; border-top:1px solid rgba(255,255,255,0.03) }
+.footer-inner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:0 1rem }
+.foot-links{ color: rgba(255,255,255,0.7) }
+
+/* --- Responsive --- */
+
+
+@media (max-width: 980px){
+  .hero{ grid-template-columns: 1fr 320px }
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Desktop: evitar wrap en navegador */
+.nav{ display:flex; gap:0.8rem; align-items:center; white-space:nowrap }
+
+
+@media (max-width: 700px){
+  .hero{ grid-template-columns:1fr; gap:1rem; padding:0 }
+  .visual-shape{ display:none }
+  .services-grid{ grid-template-columns:1fr }
+  .cases-grid{ grid-template-columns:1fr }
+  .header-content{ flex-direction:column; align-items:flex-start; gap:0.5rem }
+  .brand-title{ font-size:0.98rem }
+  .hero-title{ font-size:1.5rem }
+  .hero-sub{ font-size:0.95rem }
+  .btn-primary, .nav-cta{ width:100% }
+  .nav{ flex-direction:column; align-items:stretch }
+  .nav-link{ width:100%; text-align:left; padding-left:0.6rem }
+  .logo-main{ width:56px; height:56px }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
