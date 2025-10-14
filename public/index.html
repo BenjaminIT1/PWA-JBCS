@@ -3,17 +3,153 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- 🔹 Manifiesto -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#0d6efd" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi PWA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>AutomatizaPro</title>
+    
+    <!-- Estilos mínimos para garantizar carga -->
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      
+      .offline-card h2 {
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.5rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      .offline-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .offline-feature {
+        flex: 1 1 calc(50% - 1rem);
+        min-width: 200px;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid var(--primary-color);
+      }
+      
+      .offline-feature h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        color: var(--dark-color);
+      }
+      
+      .offline-feature p {
+        margin-bottom: 0;
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+      }
+      
+      .offline-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .offline-indicator {
+        background: var(--danger-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .offline-indicator::before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        animation: blink 2s infinite;
+      }
+      
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      
+      .offline-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      
+      .offline-button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: center;
+        border: none;
+        outline: none;
+      }
+      
+      .primary-button {
+        background-color: var(--primary-color);
+        color: white;
+      }
+      
+      .primary-button:hover {
+        background-color: #0b5ed7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(13, 110, 253, 0.25);
+      }
+      
+      .secondary-button {
+        background-color: white;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+      }
+      
+      .secondary-button:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+      }
+      
+      @media (max-width: 768px) {
+        .offline-feature {
+          flex: 1 1 100%;
+        }
+        
+        .offline-header h1 {
+          font-size: 2rem;
+        }
+        
+        .offline-container {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+    
   </head>
   <body>
     <div id="root"></div>
+          
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

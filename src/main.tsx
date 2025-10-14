@@ -10,7 +10,8 @@ createRoot(document.getElementById('root')!).render(
 )
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
+  // Register custom sw which imports the generated sw and adds fallbacks
+  navigator.serviceWorker.register('/sw-custom.js')
     .then(() => console.log("Service Worker registrado"))
     .catch(err => console.log("Error al registrar SW:", err));
 }
