@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import "./App.css";
+import OfflineForm from './components/OfflineForm';
 
 type SplashProps = { onFinish: () => void };
 
@@ -59,10 +60,12 @@ function App() {
               </div>
             </div>
             <nav className="nav">
-              <button className={`nav-link ${active === "home" ? "active" : ""}`} onClick={() => handleNavigate("home")}>Inicio</button>
-              <button className={`nav-link ${active === "services" ? "active" : ""}`} onClick={() => handleNavigate("services")}>Servicios</button>
-              <button className={`nav-link ${active === "cases" ? "active" : ""}`} onClick={() => handleNavigate("cases")}>Casos</button>
-              <button className={`nav-cta`} onClick={() => handleNavigate("contact")}>Agenda una demo</button>
+              <div className="nav-container">
+                <button className={`nav-link ${active === "home" ? "active" : ""}`} onClick={() => handleNavigate("home")}>Inicio</button>
+                <button className={`nav-link ${active === "services" ? "active" : ""}`} onClick={() => handleNavigate("services")}>Servicios</button>
+                <button className={`nav-link ${active === "cases" ? "active" : ""}`} onClick={() => handleNavigate("cases")}>Casos</button>
+                <button className={`nav-cta`} onClick={() => handleNavigate("contact")}>Agenda una demo</button>
+              </div>
             </nav>
           </div>
         </header>
@@ -136,6 +139,9 @@ function App() {
             </div>
           </section>
         </main>
+        <section id="offline" className="section">
+          <OfflineForm />
+        </section>
 
         <footer className="footer">
           <div className="footer-inner">
